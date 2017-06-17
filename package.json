@@ -1,0 +1,50 @@
+{
+  "name": "freecodecamp-recipe-box",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "babel-register": "^6.4.3",
+    "body-parser": "^1.17.1",
+    "express": "^4.13.3",
+    "mongodb": "^2.2.26",
+    "mongoose": "^4.9.5",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-redux": "4.4.5",
+    "redux": "^3.2.1",
+    "redux-thunk": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.15",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-plugin-transform-class-properties": "^6.11.5",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-runtime": "^6.3.13",
+    "mocha": "^3.2.0",
+    "webpack": "^1.11.0",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.9.1"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "mocha --require babel-register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hristo-tanev/freecodecamp-recipe-box.git"
+  },
+  "author": "Hristo Tanev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hristo-tanev/freecodecamp-recipe-box/issues"
+  },
+  "homepage": "https://github.com/hristo-tanev/freecodecamp-recipe-box#readme"
+}
