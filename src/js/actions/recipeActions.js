@@ -12,7 +12,7 @@ export function fetchRecipies() {
       url: '/recipies'
     })
     .then((response) => {
-      console.log(response.data.recipies)
+      dispatch(fetchRecipiesSuccess(response.data.recipies))
     })
     .catch((error) => {
       dispatch(fetchRecipiesFail())

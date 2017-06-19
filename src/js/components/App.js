@@ -20,7 +20,9 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(fetchRecipies())
-    setTimeout(() => {}, 1000)
+    setTimeout(() => {
+      console.log(this.props.recipies.recipies)
+    }, 1000)
   }
 
   getRecipeName(e) {
