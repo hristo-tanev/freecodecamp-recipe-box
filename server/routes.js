@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import bodyParser from 'body-parser'
 
 import Recipe from '../models/Recipe'
 
@@ -9,6 +10,11 @@ db.once('open', () => {
 })
 
 const handleRoutes = (app) => {
+  app.use(bodyParser.urlencoded({
+    extended: false
+  }))
+  app.use(bodyParser.json())
+
   app.get('/recipies', (request, response) => {
     Recipe.find({}, (error, recipies) => {
       if (error) {
@@ -17,6 +23,13 @@ const handleRoutes = (app) => {
 
       response.send({ status: 200, recipies })
     })
+  })
+
+  app.post('/recipies', (request, response) => {
+    const { name, ingredients } = request.body
+    let recipe = new Recipe({ name, ingredients })
+    recipe.save()
+    response.send({ status: 200 })
   })
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { fetchRecipies } from '../actions/recipeActions'
+import { fetchRecipies, addRecipe } from '../actions/recipeActions'
 
 @connect((store) => {
   return {
@@ -20,9 +20,6 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(fetchRecipies())
-    setTimeout(() => {
-      console.log(this.props.recipies.recipies)
-    }, 1000)
   }
 
   getRecipeName(e) {
@@ -41,7 +38,8 @@ export default class App extends React.Component {
 
   addNewRecipe() {
     const { name, ingredients } = this.state
-    console.log(name + ' ' + ingredients)
+    this.props.dispatch(addRecipe(name, ingredients))
+    this.props.dispatch(fetchRecipies())
     this.setState({
       name: '',
       ingredients: ''
@@ -49,8 +47,19 @@ export default class App extends React.Component {
   }
 
   render() {
+    const { recipies } = this.props.recipies
+    const Recipies = recipies.map((recipe) => {
+      return (<div class="panel panel-success">
+                <div class="panel-heading">
+                  {recipe.name}
+                </div>
+              </div>)
+    })
+
     return (
       <div class="container">
+        {Recipies}
+        <br />
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRecipe">Add Recipe</button>
         <div class="modal fade" id="addRecipe" role="dialog">
           <div class="modal-dialog">

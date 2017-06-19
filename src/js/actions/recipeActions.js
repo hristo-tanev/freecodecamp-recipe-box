@@ -19,3 +19,16 @@ export function fetchRecipies() {
     })
   }
 }
+
+export function addRecipe(name, ingredients) {
+  return (dispatch) => {
+    axios({
+      method: 'post',
+      url: '/recipies',
+      data: {
+        name,
+        ingredients
+      }
+    })
+  }
+}
