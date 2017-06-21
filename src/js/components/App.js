@@ -47,11 +47,31 @@ export default class App extends React.Component {
   }
 
   render() {
+    const { name, ingredients } = this.state
     const { recipies } = this.props.recipies
-    const Recipies = recipies.map((recipe) => {
-      return (<div class="panel panel-success">
-                <div class="panel-heading">
+    const Recipies = recipies.map((recipe, i) => {
+      let recipeIngr = recipe.ingredients.split(",")
+
+      return (<div key={i + 1} class="panel panel-success">
+                <div class="panel-heading" data-toggle="collapse" data-target={"#listIngr" + (i + 1)}>
                   {recipe.name}
+                </div>
+                <div id={"listIngr" + (i + 1)} class="collapse">
+                  <div class="panel-body">
+                    <h4>Ingredients</h4>
+                    <hr />
+                    <ul class="list-group">
+                      {
+                        recipeIngr.map((ingredient) => {
+                          return <li class="list-group-item">{ingredient}</li>
+                        })
+                      }
+                    </ul>
+                  </div>
+                  <div class="panel-footer">
+                    <button class="btn btn-danger" type="button">Delete</button>&nbsp;&nbsp;
+                    <button class="btn btn-default" type="button">Edit</button>
+                  </div>
                 </div>
               </div>)
     })
@@ -69,10 +89,10 @@ export default class App extends React.Component {
               </div>
               <div class="modal-body">
                 <label><strong>Recipe name</strong></label>
-                <input type="text" class="form-control" onChange={this.getRecipeName.bind(this)} />
+                <input type="text" class="form-control" value={name} onChange={this.getRecipeName.bind(this)} />
                 <br />
                 <label><strong>Recipe ingredients</strong></label>
-                <textarea class="form-control" rows="5" onChange={this.getRecipeIngredients.bind(this)}></textarea>
+                <textarea class="form-control" rows="5" value={ingredients} onChange={this.getRecipeIngredients.bind(this)}></textarea>
               </div>
               <div class="modal-footer">
                 <button onClick={this.addNewRecipe.bind(this)} type="button" class="btn btn-primary" data-dismiss="modal">Add Recipe</button>
