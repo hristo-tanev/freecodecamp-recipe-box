@@ -24,7 +24,20 @@ export function addRecipe(name, ingredients) {
   return (dispatch) => {
     axios({
       method: 'post',
-      url: '/recipies',
+      url: '/add_recipies',
+      data: {
+        name,
+        ingredients
+      }
+    })
+  }
+}
+
+export function deleteRecipe(name, ingredients) {
+  return (dispatch) => {
+    axios({
+      method: 'post',
+      url: '/delete_recipies',
       data: {
         name,
         ingredients

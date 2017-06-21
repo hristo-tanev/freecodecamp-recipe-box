@@ -25,10 +25,22 @@ const handleRoutes = (app) => {
     })
   })
 
-  app.post('/recipies', (request, response) => {
+  app.post('/add_recipies', (request, response) => {
     const { name, ingredients } = request.body
     let recipe = new Recipe({ name, ingredients })
     recipe.save()
+    response.send({ status: 200 })
+  })
+
+  app.post('/delete_recipies', (request, response) => {
+    const { name, ingredients } = request.body
+    Recipe.findOne({ name, ingredients }, (error, recipe) => {
+      if (error) {
+        throw error;
+      }
+
+      recipe.remove((error) => {})
+    })
     response.send({ status: 200 })
   })
 }

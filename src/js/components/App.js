@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { fetchRecipies, addRecipe } from '../actions/recipeActions'
+import { fetchRecipies, addRecipe, deleteRecipe } from '../actions/recipeActions'
 
 @connect((store) => {
   return {
@@ -36,10 +36,19 @@ export default class App extends React.Component {
     })
   }
 
+  deleteCurrentRecipe(name, ingredients) {
+    this.props.dispatch(deleteRecipe(name, ingredients))
+    setTimeout(() => {
+      this.props.dispatch(fetchRecipies())
+    }, 1000)
+  }
+
   addNewRecipe() {
     const { name, ingredients } = this.state
     this.props.dispatch(addRecipe(name, ingredients))
-    this.props.dispatch(fetchRecipies())
+    setTimeout(() => {
+      this.props.dispatch(fetchRecipies())
+    }, 1000)
     this.setState({
       name: '',
       ingredients: ''
@@ -69,7 +78,7 @@ export default class App extends React.Component {
                     </ul>
                   </div>
                   <div class="panel-footer">
-                    <button class="btn btn-danger" type="button">Delete</button>&nbsp;&nbsp;
+                    <button class="btn btn-danger" type="button" onClick={this.deleteCurrentRecipe.bind(this, recipe.name, recipe.ingredients)}>Delete</button>&nbsp;&nbsp;
                     <button class="btn btn-default" type="button">Edit</button>
                   </div>
                 </div>
