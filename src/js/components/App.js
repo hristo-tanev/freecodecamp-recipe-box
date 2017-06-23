@@ -43,6 +43,11 @@ export default class App extends React.Component {
     }, 1000)
   }
 
+  updateCurrentRecipe() {
+    const { name, ingredients } = this.state
+    console.log(name + ' ' + ingredients)
+  }
+
   addNewRecipe() {
     const { name, ingredients } = this.state
     this.props.dispatch(addRecipe(name, ingredients))
@@ -79,7 +84,27 @@ export default class App extends React.Component {
                   </div>
                   <div class="panel-footer">
                     <button class="btn btn-danger" type="button" onClick={this.deleteCurrentRecipe.bind(this, recipe.name, recipe.ingredients)}>Delete</button>&nbsp;&nbsp;
-                    <button class="btn btn-default" type="button">Edit</button>
+                    <button class="btn btn-default" type="button" data-toggle="modal" data-target={"#editRecipe" + (i + 1)}>Edit</button>
+                    <div class="modal fade" id={"editRecipe" + (i + 1)} role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Edit Recipe</h4>
+                          </div>
+                          <div class="modal-body">
+                            <label><strong>Recipe name</strong></label>
+                            <input type="text" class="form-control" />
+                            <br />
+                            <label><strong>Recipe ingredients</strong></label>
+                            <textarea class="form-control" rows="3"></textarea>
+                          </div>
+                          <div class="modal-footer">
+                            <button onClick={this.updateCurrentRecipe.bind(this)} type="button" class="btn btn-primary" data-dismiss="modal">Edit Recipe</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>)
@@ -101,7 +126,7 @@ export default class App extends React.Component {
                 <input type="text" class="form-control" value={name} onChange={this.getRecipeName.bind(this)} />
                 <br />
                 <label><strong>Recipe ingredients</strong></label>
-                <textarea class="form-control" rows="5" value={ingredients} onChange={this.getRecipeIngredients.bind(this)}></textarea>
+                <textarea class="form-control" rows="3" value={ingredients} onChange={this.getRecipeIngredients.bind(this)}></textarea>
               </div>
               <div class="modal-footer">
                 <button onClick={this.addNewRecipe.bind(this)} type="button" class="btn btn-primary" data-dismiss="modal">Add Recipe</button>
