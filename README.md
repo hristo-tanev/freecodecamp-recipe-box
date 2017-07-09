@@ -14,4 +14,4 @@ npm start
 ```
 
 # License
-See the [LICENSE](https://github.com/hristo-tanev/freecodecamp-markdown-previewer/LICENSE) file for license rights and limitations (MIT).
+See the [LICENSE](https://github.com/hristo-tanev/freecodecamp-recipe-box/LICENSE) file for license rights and limitations (MIT).
